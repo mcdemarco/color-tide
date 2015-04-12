@@ -1,2 +1,2 @@
-Pulls in palettes from the Colourlovers API, transitions between them.
-[Demo](http://ryan-ludwig.github.io/color-tide/)
+Pulls in colors, palettes, or patterns from the Colourlovers API and transitions between them.
+

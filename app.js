@@ -2,7 +2,7 @@ $(function() {
 
 	var defaultLover = 'retsof',
 		defaultPals = 'palettes',
-		defaultTransitions = 'tide',
+		defaultTransition = 'tide',
 		initialLoverCount = 25,
 		moreLoverCount = 10,
 		loverLicenseIssues = "Skyblue2u,liddle_r";
@@ -30,11 +30,16 @@ $(function() {
 			});
 
 	function getRetrievalType() {
-		var selectedType = $("input[name=retrieveType]:checked").val() ? $("input[name=retrieveType]:checked").val() : defaultType;
+		var selectedType = $("input[name=retrieveType]:checked").val() ? $("input[name=retrieveType]:checked").val() : defaultPals;
 		//Check loverMaxPals whenever we fetch the type.
 		if (typeof loverPalsObj[selectedType] != undefined)
 			loverMaxPals = loverPalsObj[selectedType];
 		return selectedType;
+	}
+	
+	function getTransitionType() {
+		var selectedTide = ($("input[name=retrieveTide]:checked").val() ? $("input[name=retrieveTide]:checked").val() : defaultTransition);
+		return selectedTide;
 	}
 	
 	function getLovers(n,offset) {
@@ -69,7 +74,6 @@ $(function() {
 				loverPalsObj = {"colors": loverdata[0].numColors,
 								"palettes": loverdata[0].numPalettes,
 								"patterns": loverdata[0].numPatterns};
-				console.log(loverPalsObj);
 				loverMaxPals = loverPalsObj[getRetrievalType()];
 			}
 		});
@@ -107,7 +111,7 @@ $(function() {
 			var colors = (palette.colors ? palette.colors : [palette.hex]);
 			var widths = (palette.colorWidths ? palette.colorWidths : generateWidths(colors));
 
-			if (getTransitionType == 'tide') {
+			if (getTransitionType() == 'tide') {debugger;
 				//reverse the order of the colors, because of the order people do blend palettes on CL.
 				colors.reverse();
 				
