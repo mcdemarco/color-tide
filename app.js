@@ -39,6 +39,10 @@ $(function() {
 	
 	function getTransitionType() {
 		var selectedTide = ($("input[name=retrieveTide]:checked").val() ? $("input[name=retrieveTide]:checked").val() : defaultTransition);
+		//Possibly toggle containters whenever we check the type.
+		var deselectedTide = (selectedTide == 'tide' ? 'fade' : 'tide');
+		$("#" + selectedTide + "_container").show();
+		$("#" + deselectedTide + "_container").hide();
 		return selectedTide;
 	}
 	
@@ -110,8 +114,9 @@ $(function() {
 
 			var colors = (palette.colors ? palette.colors : [palette.hex]);
 			var widths = (palette.colorWidths ? palette.colorWidths : generateWidths(colors));
+			var image = palette.imageUrl;
 
-			if (getTransitionType() == 'tide') {debugger;
+			if (getTransitionType() == 'tide') {
 				//reverse the order of the colors, because of the order people do blend palettes on CL.
 				colors.reverse();
 				
@@ -123,13 +128,21 @@ $(function() {
 					currently++;
 				}
 			} else {
-				for (var j = 0; j < colors.length; j++) {
-					$("#color" + i).css({
-						'background': '#'+colors[j],
-						'width': widths[j] * (100/currentRandomNumber)+'%'
-					}).fadeIn(1000);
-					currently++;
+				if (getRetrievalType() == 'patterns') {
+					$("#color" + (i+1)%5).css({
+						'background': '#'+colors[1],
+						'background-image': 'url(' + image + ')',
+						'width': '100%'
+					});
+				} else {
+					for (var k = 0; k < colors.length; k++) {
+ 						$("#color" + k).css({
+							'background': '#'+colors[k],
+							'width': (widths[k] * 100)+'%'
+						});//.fadeIn(1000);
+					}
 				}
+				currently++;
 			}
 		});
 

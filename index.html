@@ -12,26 +12,34 @@
 		}
 
 		.palette,
-		#tide_container {
+		#tide_container, #fade_container {
 			width: 100%;
 			height: 100%;
 
 		}
 
-		#tide_container {
+		#tide_container, #fade_container {
 			position: absolute;
 			top: 0;
 			left: 0;
 			z-index: 1;
 		}
 
-		#tide_container div {
+		#tide_container div, #fade_container div {
 			float: left; /* inline-blocks occasionally turned to white during transition. odd. */
 			height: 100%;
+		}
 
+	 	#tide_container div {
 			-moz-transition: all 4s ease-in-out;
 			-webkit-transition: all 4s ease-in-out;
 			transition: all 4s ease-in-out;
+		}
+	 
+	 	#fade_container div {
+			-moz-transition: width 3s ease-in-out;
+			-webkit-transition: width 3s ease-in-out;
+			transition: width 3s ease-in-out;
 		}
 
 		.color {
@@ -124,17 +132,17 @@
 	<div id="tide_container"></div>
 	<div id="fade_container"></div>
 	<div id="config">
-		<a href="https://github.com/ryan-ludwig/color-tide" title="information" id="info-link">i</a>
+		<a href="#" title="information" id="info-link">i</a>
 		<div id="more-information">
 			<h1>Colour Tide</h1>
 			<p>
 				<input name="retrieveType" type="radio" value="colors" />Colors
-				<input name="retrieveType" type="radio" value="palettes" checked />Palettes
-				<input name="retrieveType" type="radio" value="patterns" />Patterns
+				<input name="retrieveType" type="radio" value="palettes" />Palettes
+				<input name="retrieveType" type="radio" value="patterns" checked />Patterns
 				<br/>by <a id="lover"></a></p>
 			<p>
-				<input name="retrieveTide" type="radio" value="tide" checked />Tide
-				<input name="retrieveTide" type="radio" value="fade" />Fade</p>
+				<input name="retrieveTide" type="radio" value="tide" />Tide
+				<input name="retrieveTide" type="radio" value="fade" checked />Fade</p>
 			<p><a href="#" id="full-screen-toggle">Toggle Fullscreen</a></p>
 
 			<h2>Suggestions</h2>
