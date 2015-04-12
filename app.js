@@ -121,8 +121,12 @@ $(function() {
 				document.documentElement.mozRequestFullScreen();
 			} else if (document.documentElement.webkitRequestFullScreen) {
 				document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+				if (!document.webkitCurrentFullScreenElement) {
+					// Element.ALLOW_KEYBOARD_INPUT does not work, document is not in full screen mode
+					document.documentElement.webkitRequestFullScreen();
+				}
 			}
-		}	else {
+		} else {
 			if (document.cancelFullScreen) {
 				document.cancelFullScreen();
 			} else if (document.mozCancelFullScreen) {
