@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Color Tide</title>
+	<title>Colour Tide</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
 		body {
@@ -12,30 +12,54 @@
 		}
 
 		.palette,
-		#palette_container {
+		#tide_container, #fade_container {
 			width: 100%;
 			height: 100%;
 
 		}
 
-		#palette_container {
+		#tide_container, #fade_container {
 			position: absolute;
 			top: 0;
 			left: 0;
 			z-index: 1;
 		}
 
-		#palette_container div {
+		#tide_container div, #fade_container div {
 			float: left; /* inline-blocks occasionally turned to white during transition. odd. */
 			height: 100%;
+		}
 
+	 	#tide_container div {
 			-moz-transition: all 4s ease-in-out;
 			-webkit-transition: all 4s ease-in-out;
 			transition: all 4s ease-in-out;
 		}
+	 
+	 	#fade_container div {
+			-moz-transition: width 3s ease-in-out;
+			-webkit-transition: width 3s ease-in-out;
+			transition: width 3s ease-in-out;
+		}
 
 		.color {
 			width: 0;
+		}
+
+		#title {
+			position: absolute;
+			top: 0;
+			left: 0;
+			max-height: 20px;
+			width: 100%;
+			background-color: rgba(0,0,0,0.6);
+			color: rgba(255,255,255,0.6);
+			z-index: 4;
+			text-align: center;
+		}
+
+		#title a {
+			color: rgba(255,255,255,0.6);
 		}
 
 		#config {
@@ -43,9 +67,9 @@
 			right: 0;
 			top: 0;
 			height: 100%;
-			background: #000;
-			color: #fff;
-			z-index: 3;
+			background: transparent;
+			color: rgba(255,255,255,0.4);
+			z-index: 5;
 			max-width: 25px;
 
 			-webkit-transition: max-width 1s ease-in-out;
@@ -55,6 +79,8 @@
 
 		#config.is-open {
 			max-width: 325px;
+			background: #000;
+			color: #fff;
 		}
 
 		#info-link {
@@ -66,8 +92,8 @@
 			text-decoration: none;
 			font-size: 12px;
 			font-style: italic;
-			color: #000;
-			background: #444;
+			color: rgba(255,255,255,0.4);
+			background: rgba(100,100,100,0.4);
 			border-radius: 50%;
 
 			-webkit-transition: background 300ms;
@@ -76,13 +102,14 @@
 		}
 
 		#info-link:hover {
+			color: #000;
 			background: #fff;
 		}
 
 		#more-information {
 			color: #ccc;
 			width: 300px;
-			margin: 50px;
+			margin: 0px 50px;
 			font-family: sans-serif;
 		}
 
@@ -91,14 +118,17 @@
 		}
 
 		#notification {
-			position: absolute;
-			top: 0;
-			left: 0;
+			width: 30%;
+			margin:auto;
+			margin-top:10%;
+			padding:15px;
+			height: auto;
 			background: #FFF;
 			color: #000;
-			width: 100%;
-			height: auto;
+			border: 1px solid;
+			border-radius:20px;
 			font-family: sans-serif;
+			text-align:center;
 		}
 
 		#notification p {
@@ -115,17 +145,24 @@
 
 <body>
 	<div id="notification"></div>
-	<div id="palette_container"></div>
+	<div id="tide_container"></div>
+	<div id="fade_container"><div id="title"></div></div>
 	<div id="config">
-		<a href="https://github.com/ryan-ludwig/color-tide" title="information" id="info-link">i</a>
+		<a href="#" title="information" id="info-link">i</a>
 		<div id="more-information">
-			<h1>Color Tide</h1>
-			<p>Palettes by <a id="lover"></a></p>
-			<p>Data from the <a href="http://www.colourlovers.com/api/">Colourlovers API</a></p>
-			<p>Code on <a href="https://github.com/ryan-ludwig/palette-dance">GitHub</a></p>
+			<h1>Colour Tide</h1>
+			<p>
+				<input name="retrieveType" type="radio" value="colors" />Colors
+				<input name="retrieveType" type="radio" value="palettes" />Palettes
+				<input name="retrieveType" type="radio" value="patterns" checked />Patterns
+				<br/>by <a id="lover"></a></p>
+			<p>
+				<input name="retrieveTide" type="radio" value="tide" />Tide
+				<input name="retrieveTide" type="radio" value="fade" checked />Fade</p>
 			<p><a href="#" id="full-screen-toggle">Toggle Fullscreen</a></p>
+
 			<h2>Suggestions</h2>
-			<ul>
+			<ul id="suggestions">
 				<li><a href="#steph6">steph6</a></li>
 				<li><a href="#tsukasaokazaki">tsukasaokazaki</a></li>
 				<li><a href="#GlueStudio">GlueStudio</a></li>
@@ -134,6 +171,9 @@
 				<li><a href="#mravka">mravka</a></li>
 				<li><a href="#emilyr">emilyr</a></li>
 			</ul>
+			<p>Uses the <a href="http://www.colourlovers.com/api/">Colourlovers API</a>.<br/>
+				<a href="https://github.com/mcdemarco/color-tide">Code</a> by <a href="#mcdemarco">mcdemarco</a>, based on<br/>
+				<a href="https://github.com/ryan-ludwig/color-tide">color-tide</a> by Ryan Ludwig.
 		</div>
 	</div>
 
