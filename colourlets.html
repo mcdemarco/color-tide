@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<h1>ColourLoving Bookmarklets</h1>
+
+		<p>Both bookmarklets are designed to import <a href="http://app.coolors.co/">Coolors</a> palettes to ColourLovers.  To use the basic bookmarklet, "Palettize", select your palette at Coolors and click on the bookmarklet.  This will open up a ColourLovers window or tab (depending on your browser settings) with your colors filled in to the basic palette creator.  All you need to do is name and save the palette.</p>
+
+		<p>To use the advanced bookmarklet, "Copasetic", select your palette at Coolors and copy the full Coolors URL.  Then open <a href="http://www.colourlovers.com/copaso/ColorPaletteSoftware">Copaso</a>.  Click on the bookmarklet to open a popup, and paste the Coolors URL into the popup.  Nothing obvious will happen, but you can now click on each blank color swatch and hit return (five times) to get your colors.  Then you can adjust your palette widths, enter a title, and save.</p>
+
+		<p>You don't need to be logged in to Coolors to use these bookmarklets, but you will need to be logged into ColourLovers to save palettes.</p>
+		
+		<h2>Install the Bookmarklet</h2>
+
+		<p>To install the basic bookmarklet, drag this link to your Favorites or Bookmarks bar: <a id='bookmarkletAnchor' href='javascript:(function(){window.open("http://www.colourlovers.com/palettes/add?colors=" + window.location.pathname.split("/")[1].split("-").join(","));})();'>Palettize</a>.</p>
+
+		<p>To install the Copaso bookmarklet, drag this link to your Favorites or Bookmarks bar: <a id='bookmarkletAnchor' href='javascript:(function(){var coolors=prompt("Enter the coolors.co url.","");var colors = coolors.split("/")[3].split("-");color_0.onclick=getFunc(0);color_1.onclick=getFunc(1);color_2.onclick=getFunc(2);color_3.onclick=getFunc(3);color_4.onclick=getFunc(4);function getFunc(n) {return function(){basicHex.value = colors[n];basicHex.focus();}};})();'>Copasetic</a>.</p>
+
+		<p>To install either bookmarklet directly on an iPhone or iPad, you can follow <a href="https://stevesouders.com/mobileperf/iphonesteps.php">these instructions on adding a bookmarklet to Mobile Safari</a>, but I find it's easier to add the bookmarklet to desktop Safari and let iCloud sync it.  (Syncing can be set up under Settings | iCloud | Safari on iOS, and System Preferences | iCloud | Safari on MacOS.)</p>
+
+	</body>
+</html>
