@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title>Colour Tide</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width">
+	<meta name="apple-mobile-web-app-capable" content="yes">
 	<style>
 		body {
 			background: #000;
@@ -36,10 +37,10 @@
 			transition: all 4s ease-in-out;
 		}
 	 
-	 	#fade_container div {
-			-moz-transition: width 3s ease-in-out;
-			-webkit-transition: width 3s ease-in-out;
-			transition: width 3s ease-in-out;
+	 	#fade_container div, #title {
+			-moz-transition: all 5s ease-in-out;
+			-webkit-transition: all 5s ease-in-out;
+			transition: all 5s ease-in-out;
 		}
 
 		.color {
@@ -151,12 +152,12 @@
 		<a href="#" title="information" id="info-link">i</a>
 		<div id="more-information">
 			<h1>Colour Tide</h1>
-			<p>
+			<p id="tideForm">
 				<input name="retrieveType" type="radio" value="colors" />Colors
 				<input name="retrieveType" type="radio" value="palettes" />Palettes
 				<input name="retrieveType" type="radio" value="patterns" checked />Patterns
-				<br/>by <a id="lover"></a></p>
-			<p>
+				<br/>by <a id="lover"></a>
+			<br/><br/>
 				<input name="retrieveTide" type="radio" value="tide" />Tide
 				<input name="retrieveTide" type="radio" value="fade" checked />Fade</p>
 			<p><a href="#" id="full-screen-toggle">Toggle Fullscreen</a></p>

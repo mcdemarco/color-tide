@@ -5,7 +5,8 @@ $(function() {
 		defaultTransition = 'tide',
 		initialLoverCount = 25,
 		moreLoverCount = 10,
-		loverLicenseIssues = "Skyblue2u,liddle_r";
+		loverLicenseIssues = "Skyblue2u,liddle_r",
+		timeouts = [];
 	
 	var	$tideContainer = $('#tide_container'),
 		$fadeContainer = $('#fade_container'),
@@ -39,8 +40,18 @@ $(function() {
 	
 	function getTransitionType() {
 		var selectedTide = ($("input[name=retrieveTide]:checked").val() ? $("input[name=retrieveTide]:checked").val() : defaultTransition);
-		//Possibly toggle containters whenever we check the type.
-		var deselectedTide = (selectedTide == 'tide' ? 'fade' : 'tide');
+		//Toggle containters and durations whenever we check the type.
+		if (selectedTide == 'tide') {
+			var deselectedTide = 'fade';
+			minPals = 1;
+			maxPals = 16;
+			duration = 3800;
+		} else {
+			var deselectedTide = 'tide';
+			minPals = 40;
+			maxPals = 40;
+			duration = 40*10000;
+		}
 		$("#" + selectedTide + "_container").show();
 		$("#" + deselectedTide + "_container").hide();
 		return selectedTide;
@@ -88,7 +99,7 @@ $(function() {
 			url: requestUrl,
 			dataType: 'jsonp',
 			success: function(data){
-				//console.log(data, currentRandomNumber);
+				console.log(data, currentRandomNumber);
 				drawPals(data, currentRandomNumber);
 			}
 		});
@@ -128,21 +139,26 @@ $(function() {
 				}
 			} else {
 				if (getRetrievalType() == 'patterns') {
-					$("#color0").css({
-						'background-color': '#'+colors[0],
-						'background-image': 'url(' + palette.imageUrl + ')',
-						'width': '100%'
-					});
-				} else {
-					for (var k = 0; k < colors.length; k++) {
- 						$("#color" + k).css({
-							'background': '#'+colors[k],
-							'width': (widths[k] * 100)+'%'
+					timeouts.push(setTimeout(function(){
+						$("#color0").css({
+							'background-color': '#'+colors[0],
+							'background-image': 'url(' + palette.imageUrl + ')',
+							'width': '100%'
 						});
-					}
+						$("#title").html("<a target='_blank' href='" + palette.url + "'>" + palette.title + "</a> by " + palette.userName);
+					},10000*currently));
+				} else {
+					timeouts.push(setTimeout(function(){
+						for (var k = 0; k < colors.length; k++) {
+ 							$("#color" + k).css({
+								'background': '#'+colors[k],
+								'width': (widths[k] * 100)+'%'
+							});
+						}
+						$("#title").html("<a target='_blank' href='" + palette.url + "'>" + palette.title + "</a> by " + palette.userName);
+					},10000*currently));
 				}
 				currently++;
-				$("#title").html("<a target='_blank' href='" + palette.url + "'>" + palette.title + "</a> by " + palette.userName);
 			}
 		});
 
@@ -231,10 +247,31 @@ $(function() {
 		getLoverData(lover);
 		buildInfoWindow();
 		randomizePals();
+		$("#tideForm").click(reinit);
 	}
+
+	function reinit() {
+		getRetrievalType();
+		getTransitionType();
+		for (var i=0; i<timeouts.length; i++) {
+			clearTimeout(timeouts[i]);
+		}
+		clearInterval(interval);
+		randomizePals();
+		console.log("In reinit");
+		interval = setInterval(liveIntervalFunction, duration);
+	}
+	
 	init();
 
-  // keep bringing in random the palettes per the duration
-  window.setInterval(randomizePals, duration);
+	// keep bringing in random the palettes per the duration
+
+	var liveIntervalFunction = function(){
+		clearInterval(interval);
+		randomizePals();
+		console.log("in liveIntervalFcn");
+		interval = setInterval(liveIntervalFunction, duration);
+	};
+	var interval = window.setInterval(liveIntervalFunction, duration);
 
 });
