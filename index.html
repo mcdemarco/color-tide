@@ -46,6 +46,22 @@
 			width: 0;
 		}
 
+		#title {
+			position: absolute;
+			top: 0;
+			left: 0;
+			max-height: 20px;
+			width: 100%;
+			background-color: rgba(0,0,0,0.6);
+			color: rgba(255,255,255,0.6);
+			z-index: 4;
+			text-align: center;
+		}
+
+		#title a {
+			color: rgba(255,255,255,0.6);
+		}
+
 		#config {
 			position: absolute;
 			right: 0;
@@ -53,7 +69,7 @@
 			height: 100%;
 			background: transparent;
 			color: rgba(255,255,255,0.4);
-			z-index: 3;
+			z-index: 5;
 			max-width: 25px;
 
 			-webkit-transition: max-width 1s ease-in-out;
@@ -130,7 +146,7 @@
 <body>
 	<div id="notification"></div>
 	<div id="tide_container"></div>
-	<div id="fade_container"></div>
+	<div id="fade_container"><div id="title"></div></div>
 	<div id="config">
 		<a href="#" title="information" id="info-link">i</a>
 		<div id="more-information">

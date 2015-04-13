@@ -1,6 +1,6 @@
 $(function() {
 
-	var defaultLover = 'retsof',
+	var defaultLover = 'eighteyed',
 		defaultPals = 'palettes',
 		defaultTransition = 'tide',
 		initialLoverCount = 25,
@@ -114,7 +114,6 @@ $(function() {
 
 			var colors = (palette.colors ? palette.colors : [palette.hex]);
 			var widths = (palette.colorWidths ? palette.colorWidths : generateWidths(colors));
-			var image = palette.imageUrl;
 
 			if (getTransitionType() == 'tide') {
 				//reverse the order of the colors, because of the order people do blend palettes on CL.
@@ -129,9 +128,9 @@ $(function() {
 				}
 			} else {
 				if (getRetrievalType() == 'patterns') {
-					$("#color" + (i+1)%5).css({
-						'background': '#'+colors[1],
-						'background-image': 'url(' + image + ')',
+					$("#color0").css({
+						'background-color': '#'+colors[0],
+						'background-image': 'url(' + palette.imageUrl + ')',
 						'width': '100%'
 					});
 				} else {
@@ -139,10 +138,11 @@ $(function() {
  						$("#color" + k).css({
 							'background': '#'+colors[k],
 							'width': (widths[k] * 100)+'%'
-						});//.fadeIn(1000);
+						});
 					}
 				}
 				currently++;
+				$("#title").html("<a target='_blank' href='" + palette.url + "'>" + palette.title + "</a> by " + palette.userName);
 			}
 		});
 
