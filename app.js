@@ -1,6 +1,6 @@
 $(function() {
 
-	var defaultLover = 'eighteyed',
+	var defaultLover = 'retsof',
 		defaultPals = 'palettes',
 		defaultTransition = 'tide',
 		initialLoverCount = 25,
@@ -8,6 +8,7 @@ $(function() {
 		loverLicenseIssues = "Skyblue2u,liddle_r";
 	
 	var	$tideContainer = $('#tide_container'),
+		$fadeContainer = $('#fade_container'),
 		$colorHolders,
 		loverPalsObj = {},
 		minPals = 1,
@@ -38,6 +39,11 @@ $(function() {
 	
 	function getTransitionType() {
 		var selectedTide = ($("input[name=retrieveTide]:checked").val() ? $("input[name=retrieveTide]:checked").val() : defaultTransition);
+		//Possibly toggle containters whenever we check the type.
+		var deselectedTide = (selectedTide == 'tide' ? 'fade' : 'tide');
+		$("#" + selectedTide + "_container").show();
+		$("#" + deselectedTide + "_container").hide();
+		return selectedTide;
 	}
 	
 	function getLovers(n,offset) {
@@ -108,33 +114,34 @@ $(function() {
 
 			var colors = (palette.colors ? palette.colors : [palette.hex]);
 			var widths = (palette.colorWidths ? palette.colorWidths : generateWidths(colors));
-			var picArray = [];
+			var image = palette.imageUrl;
 
-			if (getTransitionType() == 'tide' || getRetrievalType() != 'patterns') {
+			if (getTransitionType() == 'tide') {
 				//reverse the order of the colors, because of the order people do blend palettes on CL.
 				colors.reverse();
 				
 				for (var j = 0; j < colors.length; j++) {
-					var width = (getTransitionType() == 'tide' ? widths[j] * (100/currentRandomNumber)+'%' : (widths[j] * 100)+'%');
 					$colorHolders.eq(currently).css({
 						'background': '#'+colors[j],
-						'width': width
+						'width': widths[j] * (100/currentRandomNumber)+'%'
 					});
 					currently++;
 				}
-			} else if (getRetrievalType() == 'patterns') {
-				//Preload for better transitions.
-				picArray[currently] = new Image();
-				picArray[currently].src = palette.imageUrl;
-				$colorHolders.eq(currently).css({
-					'background-image': 'url(' + palette.imageUrl + ')',
-					'width': '100%'
-				}).attr('title',palette.title);
-				currently++;
-				$colorHolders.eq(currently).css({
-					'background-color': '#'+colors[0],
-					'width': '100%'
-				});
+			} else {
+				if (getRetrievalType() == 'patterns') {
+					$("#color" + (i+1)%5).css({
+						'background': '#'+colors[1],
+						'background-image': 'url(' + image + ')',
+						'width': '100%'
+					});
+				} else {
+					for (var k = 0; k < colors.length; k++) {
+ 						$("#color" + k).css({
+							'background': '#'+colors[k],
+							'width': (widths[k] * 100)+'%'
+						});//.fadeIn(1000);
+					}
+				}
 				currently++;
 			}
 		});
@@ -213,6 +220,9 @@ $(function() {
 		// build placeholders for the max amount of colors possible
 		for (var i = 0; i<maxPals*5; i++) {
 			$tideContainer.append('<div class="color"></div>');
+		}
+		for (var i = 0; i<5; i++) {
+			$fadeContainer.append('<div id="color' + i + '"></div>');
 		}
 		$colorHolders = $tideContainer.find('div.color');
 

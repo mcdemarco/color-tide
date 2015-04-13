@@ -12,28 +12,36 @@
 		}
 
 		.palette,
-		#tide_container {
+		#tide_container, #fade_container {
 			width: 100%;
 			height: 100%;
 
 		}
 
-		#tide_container {
+		#tide_container, #fade_container {
 			position: absolute;
 			top: 0;
 			left: 0;
 			z-index: 1;
 		}
 
-		#tide_container div {
+		#tide_container div, #fade_container div {
 			float: left; /* inline-blocks occasionally turned to white during transition. odd. */
 			height: 100%;
+		}
 
+	 	#tide_container div {
 			-moz-transition: all 4s ease-in-out;
 			-webkit-transition: all 4s ease-in-out;
 			transition: all 4s ease-in-out;
 		}
 	 
+	 	#fade_container div {
+			-moz-transition: width 3s ease-in-out;
+			-webkit-transition: width 3s ease-in-out;
+			transition: width 3s ease-in-out;
+		}
+
 		.color {
 			width: 0;
 		}
@@ -122,6 +130,7 @@
 <body>
 	<div id="notification"></div>
 	<div id="tide_container"></div>
+	<div id="fade_container"></div>
 	<div id="config">
 		<a href="#" title="information" id="info-link">i</a>
 		<div id="more-information">
