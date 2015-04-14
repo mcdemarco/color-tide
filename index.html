@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Colour Tide</title>
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<style>
 		body {
@@ -80,7 +80,7 @@
 
 		#config.is-open {
 			max-width: 325px;
-			background: #000;
+			background: rgba(0,0,0,0.8);
 			color: #fff;
 		}
 
@@ -153,16 +153,18 @@
 		<div id="more-information">
 			<h1>Colour Tide</h1>
 			<p id="tideForm">
+				<input name="retrieveTop" type="radio" value="top" checked />Top
+				<input name="retrieveTop" type="radio" value="new" />New<br/>
 				<input name="retrieveType" type="radio" value="colors" />Colors
 				<input name="retrieveType" type="radio" value="palettes" />Palettes
 				<input name="retrieveType" type="radio" value="patterns" checked />Patterns
-				<br/>by <a id="lover"></a>
+				<br/><input name="retrieveLover" type="checkbox" checked>by <a id="lover"></a>
 			<br/><br/>
 				<input name="retrieveTide" type="radio" value="tide" />Tide
 				<input name="retrieveTide" type="radio" value="fade" checked />Fade</p>
 			<p><a href="#" id="full-screen-toggle">Toggle Fullscreen</a></p>
 
-			<h2>Suggestions</h2>
+			<h2>Top Lovers</h2>
 			<ul id="suggestions">
 				<li><a href="#steph6">steph6</a></li>
 				<li><a href="#tsukasaokazaki">tsukasaokazaki</a></li>

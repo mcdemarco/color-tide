@@ -18,17 +18,19 @@ $(function() {
 		lover = defaultLover,
 		loverMaxPals = 1000; // the max number of offsets available to query. This will update when you receive a result from getLoverData.
 	
-			loverHash = window.location.hash.substr(1);
+	loverHash = window.location.hash.substr(1);
 
-			if (loverHash !== '') {
-				lover = loverHash;
-			}
+	if (loverHash !== '') {
+		lover = loverHash;
+	}
 
-			$(window).on('hashchange',function(){
-				lover = window.location.hash.substr(1);
-				getLoverData(lover);
-				buildInfoWindow();
-			});
+	$(window).on('hashchange',function(){
+		lover = window.location.hash.substr(1);
+		if (lover)
+			getLoverData(lover);
+		buildInfoWindow();
+		reinit();
+	});
 
 	function getRetrievalType() {
 		var selectedType = $("input[name=retrieveType]:checked").val() ? $("input[name=retrieveType]:checked").val() : defaultPals;
@@ -99,7 +101,7 @@ $(function() {
 			url: requestUrl,
 			dataType: 'jsonp',
 			success: function(data){
-				console.log(data, currentRandomNumber);
+				//console.log(data, currentRandomNumber);
 				drawPals(data, currentRandomNumber);
 			}
 		});
@@ -141,12 +143,14 @@ $(function() {
 				if (getRetrievalType() == 'patterns') {
 					timeouts.push(setTimeout(function(){
 						$("#color0").css({
-							'background-color': '#'+colors[0],
 							'background-image': 'url(' + palette.imageUrl + ')',
+							'background-color': '#'+colors[0],
 							'width': '100%'
 						});
-						$("#title").html("<a target='_blank' href='" + palette.url + "'>" + palette.title + "</a> by " + palette.userName);
 					},10000*currently));
+					timeouts.push(setTimeout(function(){
+						$("#title").html("<a target='_blank' href='" + palette.url + "'>" + palette.title + "</a> by " + palette.userName);
+					},10000*currently + 1000));
 				} else {
 					timeouts.push(setTimeout(function(){
 						for (var k = 0; k < colors.length; k++) {
@@ -183,9 +187,9 @@ $(function() {
 		var maxOffset = Math.floor(loverMaxPals / currentRandomNumber) - 1;
 
 		// make the API request
-		getPals('http://www.colourlovers.com/api/' + getRetrievalType() + '/new/?format=json&lover='+lover+'&showPaletteWidths=1&resultOffset='+getRandomInteger(0,maxOffset)+'&numResults='+currentRandomNumber+'&jsonCallback=?', currentRandomNumber);
+		var requestURL = 'http://www.colourlovers.com/api/' + getRetrievalType() + '/' + $("input[name=retrieveTop]:checked").val() + '/?format=json' + ($("input[name=retrieveLover]").is(":checked") ? '&lover='+lover : '') + '&showPaletteWidths=1&resultOffset='+getRandomInteger(0,maxOffset)+'&numResults='+currentRandomNumber+'&jsonCallback=?';
+		getPals(requestURL, currentRandomNumber);
 	}
-
 
 	// UI stuff
 	function buildInfoWindow() {
@@ -258,7 +262,6 @@ $(function() {
 		}
 		clearInterval(interval);
 		randomizePals();
-		console.log("In reinit");
 		interval = setInterval(liveIntervalFunction, duration);
 	}
 	
@@ -269,7 +272,6 @@ $(function() {
 	var liveIntervalFunction = function(){
 		clearInterval(interval);
 		randomizePals();
-		console.log("in liveIntervalFcn");
 		interval = setInterval(liveIntervalFunction, duration);
 	};
 	var interval = window.setInterval(liveIntervalFunction, duration);
