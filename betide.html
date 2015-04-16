@@ -81,18 +81,40 @@
 	 .patterns figure {
 		 -webkit-animation-name: xfade;
 		 -webkit-animation-iteration-count: infinite;
-		 -webkit-animation-duration: 48s;
+		 -webkit-animation-duration: 60s;
 		 animation-name: xfade;
 		 animation-iteration-count: infinite;
-		 animation-duration: 48s;
+		 animation-duration: 60s;
 	 }
 
-	 .patterns figure:nth-child(1),.patterns figure:nth-child(2),.patterns figure:nth-child(3),.patterns figure:nth-child(4),.patterns figure:nth-child(5),.patterns figure:nth-child(6),.patterns figure:nth-child(7) {
+	 .patterns figure:nth-child(1),.patterns figure:nth-child(2),.patterns figure:nth-child(3),.patterns figure:nth-child(4),.patterns figure:nth-child(5),.patterns figure:nth-child(6),.patterns figure:nth-child(7),.patterns figure:nth-child(8),.patterns figure:nth-child(9) {
 		 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 		 filter: alpha(opacity=0);
 		 opacity: 0;
 	 }
 	 .patterns figure:nth-child(1) {
+		 -webkit-animation-delay: -54s;
+		 animation-delay: -54s;
+		 /*
+		 -webkit-animation: xfade 48s 42s  infinite;
+		 -moz-animation: xfade 48s 42s  infinite;
+		 -ms-animation: xfade 48s 42s infinite;
+		 -o-animation: xfade 48s 42s infinite;
+		 animation: xfade 48s 42s infinite;
+		 */
+	 }
+	 .patterns figure:nth-child(2) {
+		 -webkit-animation-delay: -48s;
+		 animation-delay: -48s;
+		 /*
+		 -webkit-animation: xfade 48s 42s  infinite;
+		 -moz-animation: xfade 48s 42s  infinite;
+		 -ms-animation: xfade 48s 42s infinite;
+		 -o-animation: xfade 48s 42s infinite;
+		 animation: xfade 48s 42s infinite;
+		 */
+	 }
+	 .patterns figure:nth-child(3) {
 		 -webkit-animation-delay: -42s;
 		 animation-delay: -42s;
 		 /*
@@ -103,7 +125,7 @@
 		 animation: xfade 48s 42s infinite;
 		 */
 	 }
-	 .patterns figure:nth-child(2) {
+	 .patterns figure:nth-child(4) {
 		 -webkit-animation-delay: -36s;
 		 animation-delay: -36s;
 		 /*
@@ -114,7 +136,7 @@
 		 animation: xfade 48s 36s infinite;
 		 */
 	 }
-	 .patterns figure:nth-child(3) {
+	 .patterns figure:nth-child(5) {
 		 -webkit-animation-delay: -30s;
 		 animation-delay: -30s;
 		 /*
@@ -125,7 +147,7 @@
 		 animation: xfade 48s 30s infinite;
 		 */
 	 }
-	 .patterns figure:nth-child(4) {
+	 .patterns figure:nth-child(6) {
 		 -webkit-animation-delay: -24s;
 		 animation-delay: -24s;
 		 /*
@@ -136,7 +158,7 @@
 		 animation: xfade 48s 24s infinite;
 		 */
 	 }
-	 .patterns figure:nth-child(5) {
+	 .patterns figure:nth-child(7) {
 		 -webkit-animation-delay: -18s;
 		 animation-delay: -18s;
 		 /*
@@ -147,7 +169,7 @@
 		 animation: xfade 48s 18s infinite;
 		 */
 	 }
-	 .patterns figure:nth-child(6) {
+	 .patterns figure:nth-child(8) {
 		 -webkit-animation-delay: -12s;
 		 animation-delay: -12s;
 		 /*
@@ -158,7 +180,7 @@
 		 animation: xfade 48s 12s infinite;
 		 */
 	 }
-	 .patterns figure:nth-child(7) {
+	 .patterns figure:nth-child(9) {
 		 -webkit-animation-delay: -6s;
 		 animation-delay: -6s;
 		 /*
@@ -169,7 +191,7 @@
 		 animation: xfade 48s 6s infinite;
 		 */
 	 }
-	 .patterns figure:nth-child(8) {
+	 .patterns figure:nth-child(10) {
 		 -webkit-animation-delay: -0s;
 		 animation-delay: -0s;
 		 /*
@@ -185,70 +207,86 @@
 			 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
    			 filter: alpha(opacity=100);
    			 opacity: 1;
+			 z-index: 2;
 		 }
 		 14.67% {
 			 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 		 16.67% {
 			 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 			 filter: alpha(opacity=0);
 			 opacity: 0;
+			 z-index: 1;
 		 }
 		 98% {
 			 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
    			 filter: alpha(opacity=0);
    			 opacity: 0;
+			 z-index: 1;
+			 
 		 }
 		 100% {
 			 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
    			 filter: alpha(opacity=100);
    			 opacity: 1;
+			 z-index: 2;
 		 }
 	 }
 	 @-moz-keyframes xfade {
 		 0% {
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 		 14.67% {
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 		 16.67% {
 			 filter: alpha(opacity=0);
 			 opacity: 0;
+			 z-index: 1;
 		 }
 		 98% {
 			 filter: alpha(opacity=0);
 			 opacity: 0;
+			 z-index: 1;
 		 }
 		 100% {
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 	 }
 	 @-webkit-keyframes "xfade" {
 		 0% {
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 		 14.67% {
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 		 16.67% {
 			 filter: alpha(opacity=0);
 			 opacity: 0;
+			 z-index: 1;
 		 }
 		 98% {
 			 filter: alpha(opacity=0);
 			 opacity: 0;
+			 z-index: 1;
 		 }
 		 100% {
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 	 }
 	 @-ms-keyframes "xfade" {
@@ -256,48 +294,58 @@
 			 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 		 14.67% {
 			 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 		 16.67% {
 			 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 			 filter: alpha(opacity=0);
 			 opacity: 0;
+			 z-index: 1;
 		 }
 		 98% {
 			 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 			 filter: alpha(opacity=0);
 			 opacity: 0;
+			 z-index: 1;
 		 }
 		 100% {
 			 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 	 }
 	 @-o-keyframes "xfade" {
 		 0% {
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 		 14.67% {
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 		 16.67% {
 			 filter: alpha(opacity=0);
 			 opacity: 0;
+			 z-index: 1;
 		 }
 		 98% {
 			 filter: alpha(opacity=0);
 			 opacity: 0;
+			 z-index: 1;
 		 }
 		 100% {
 			 filter: alpha(opacity=100);
 			 opacity: 1;
+			 z-index: 2;
 		 }
 	 }
 	 
@@ -309,20 +357,16 @@
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" ></script>
 	<script>
-	$(function() {
+	 $(function() {
 
-	var defaultLover = '',
-		defaultPals = 'patterns',
-		initialLoverCount = 25,
-		moreLoverCount = 10,
-		offset = 0;
-	
-	var	$container = $('div.patterns'),
+	var defaultPals = 'patterns',
+		offset = 0,
+		$container = $('div.patterns'),
 		$colorHolders,
 		loverPalsObj = {},
-		numPals = 8,
-		duration = 48*1000 - 10,
-		lover = defaultLover,
+		numPals = 10,
+		duration = 61*1000,
+		lover = '',
 		loverMaxPals = 1000; // the max number of offsets available to query. This will update when you receive a result from getLoverData.
 	
 	loverHash = window.location.hash.substr(1);
@@ -376,11 +420,9 @@
 			var colors = (palette.colors ? palette.colors : [palette.hex]);
 			var widths = (palette.colorWidths ? palette.colorWidths : generateWidths(colors));
 
-			$colorHolders.eq(currently).css({
-				'background-image': 'url(' + palette.imageUrl + ')'
-			});
-
+			$colorHolders.eq(currently).css({'background-image': 'url(' + palette.imageUrl + ')'});
 			$colorHolders.eq(currently).find("figcaption").html("<a target='_blank' href='" + palette.url + "'>" + palette.title + "</a> by " + palette.userName);
+			
 			if (console.log)
 				console.log((offset + currently) + ": " + palette.title + ", " + palette.url);
 
@@ -388,7 +430,13 @@
 		});
 
  		offset += currently;
-		
+
+/*		//Copy the first slide to the last.
+		$colorHolders.eq(currently).css({
+				'background-image': 'url(' + data[0].imageUrl + ')'
+		});
+		$colorHolders.eq(currently).find("figcaption").html("<a target='_blank' href='" + data[0].url + "'>" + data[0].title + "</a> by " + data[0].userName);		
+*/		
 		function generateWidths(colors) {
 			//Generate widths for pretend palettes.
 			var widths = [];
@@ -436,7 +484,7 @@
 
 	function init() {
 		// build placeholders for the max amount of colors possible
-		for (var i = 0; i<8; i++) {
+		for (var i = 0; i<numPals; i++) {
 			$container.append('<figure><figcaption></figcaption></figure>');
 		}
 		$colorHolders = $container.find('figure');
@@ -449,6 +497,15 @@
 
 	init();
 
+
+	// test for touch: http://www.stucox.com/blog/you-cant-detect-a-touchscreen/
+
+	window.addEventListener('touchstart', function setHasTouch () {
+		$("body").addClass("touch");
+		window.removeEventListener('touchstart', setHasTouch);
+	}, false);
+
+	
 	// keep bringing in random the palettes per the duration
 
 	var liveIntervalFunction = function(){
